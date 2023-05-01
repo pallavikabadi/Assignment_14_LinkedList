@@ -72,5 +72,21 @@ public class LinkedList<T> {
         }
         return false;
     }
+    
+    public T popLast() {
+         /*
+           Deleting the Last Element
+         */
+        if (head == null)
+            return null;
+        T popLastData = tail.data;  //last element
+        Node<T> temp = head;
+        while (temp.next != tail) {
+            temp = temp.next;      //Second last element is converting to null using while loop
+        }
+        temp.next = null;
+        tail = temp;
+        return popLastData;
+    }
 }
 
