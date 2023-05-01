@@ -44,6 +44,21 @@ public class LinkedListMain {
         else
             System.out.println("Element 30 is NOt inserted");
         linkedList3.display();
+        
+        /*
+         UC6: Linked list PopLastMethod to delete the Last element.
+         */
+        LinkedList<Integer> linkedList4 = new LinkedList<>();
+        linkedList4.append(56);
+        linkedList4.append(30);
+        linkedList4.append(70);
+        linkedList4.display();
+        Integer poppedLastData = linkedList4.popLast();
+        if (poppedLastData == null)
+            System.out.println("LinkedList is Empty");
+        else
+            System.out.println("The popLast element is "+poppedLastData);
+            linkedList4.display();
     }
     
 }
