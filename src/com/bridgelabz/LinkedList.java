@@ -24,16 +24,120 @@ public class LinkedList<T> {
             head = newNode;
         }
     }
+
     public void display() {
         /*
         Methode for Display the linked list
          */
-        Node<T> temp = head;;
+        Node<T> temp = head;
+        ;
         while (temp != null) {
-            System.out.print(temp.data+ " -> ");
+            System.out.print(temp.data + " -> ");
             temp = temp.next;
         }
         System.out.println();
     }
-}
 
+    public void append(T data) {
+        Node<T> newNode = new Node<>(data);
+        if (head == null) {
+            head = newNode;
+            tail = newNode;
+        } else {
+            tail.next = newNode;
+            tail = newNode;
+        }
+    }
+
+    public Node<T> search(T searchData) {
+        /*
+         when temp node is head,and temp is not equal to null then its data equals to search data
+         */
+        Node<T> temp = head;
+        ;
+        while (temp != null) {
+            if (temp.data.equals(searchData))
+                return temp;
+            temp = temp.next;
+        }
+        return null; //when temp = null;
+    }
+
+    public boolean insertAfter(T searchData, T insertData) {
+        /*
+         * After searching the node the new node is inserted next ot it.
+         */
+        Node<T> newNode = new Node<>(insertData);
+        Node<T> searchedNode = search(searchData);
+        if (searchedNode != null) {
+            newNode.next = searchedNode.next;
+            searchedNode.next = newNode;
+            return true;
+        }
+        return false;
+    }
+
+    public T pop() {
+            /*
+              Deleting the first Element
+            */
+        if (head == null)
+            return null;
+        T popData = head.data;  //first element
+        head = head.next;
+        return popData;
+    }
+
+    public T popLast() {
+         /*
+           Deleting the Last Element
+         */
+        if (head == null)
+            return null;
+        T popLastData = tail.data;  //last element
+        Node<T> temp = head;
+        while (temp.next != tail) {
+            temp = temp.next;      //Second last element is converting to null using while loop
+        }
+        temp.next = null;
+        tail = temp;
+        return popLastData;
+
+    }
+
+    public Node<T> delete(T delete) {
+        /*
+         * Deleting the node:-
+         * creating temp node to search the node for deleting
+         */
+        Node<T> temp1 = head;
+        Node<T> temp2 = head;
+        Node<T> temp3 = head;
+        int count = 0;
+        while (temp1 != null & temp2 != null & temp3 != null) {
+            count++;
+            if (count > 2) {
+                temp3 = temp3.next;
+            }
+            if (temp1.data == delete) {
+                temp2 = temp2.next;
+                temp3.next = temp2;
+            }
+            temp1 = temp1.next;
+            temp2 = temp2.next;
+        }
+        return temp1;
+    }
+
+    public void size() {
+
+        Node<T> temp = head;//create temp node to find the count.
+        int count = 0;//count starts from when temp is equal to head.
+        while (temp != null) {  //By using while loop, count is added till the temp become null(Tail).
+            temp = temp.next;
+            count++;
+        }
+        System.out.println("Size of the linked list is " + count);
+
+    }
+}
